@@ -29,9 +29,37 @@ For more in the future and more awesomer...
 
 // Cameron Berry
 
-public class Main {
+import java.util.Arrays;
+
+class Main {
+  
+  public static final int[][] STATE = {
+    {2,1,2},
+    {2,1,0},
+    {1,1,2}
+  };
+
   public static void main(String[] args) {
-    new Player();
-    System.out.println("TTT - RAN WITHOUT ERRORS");
+
+    Player p1 = new Player("Player 1");
+    Player p2 = new Player("Player 2");
+    Game myGame = new Game(p1,p2);
+
+    boolean playing = true;
+    int i = 0;
+
+    while(playing){
+      myGame.doTurn(i);
+      i++;
+      Player winner = myGame.checkWin();
+      if(!winner.getName().equals("NONE")){
+        playing = false;
+        System.out.println();
+        System.out.println(winner.getName() + " wins!");
+      }
+    }
+
   }
+
 }
+
